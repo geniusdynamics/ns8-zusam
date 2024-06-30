@@ -16,18 +16,22 @@ data = json.load(sys.stdin)
 #This is specific to you module, so you need to change it accordingly.
 # we read a json stdin {"vars1":true, "var2":"foo", "vars3": 3} and we writ it to .config/state/environment
 # Upper case to set environment variable and minor case to read from stdin
+# - DATABASE_NAME=data.db
+# - INIT_GROUP=zusam
+# - INIT_PASSWORD=zusam
+# - INIT_USER=zusam
+INIT_GROUP = data.get('init_group', 'zusam')
+INIT_PASSWORD = data.get('init_password', 'zusam')
+INIT_USER = data.get('init_user', 'zusam')
+DATABASE_NAME = data.get('database_name', 'data.db')
 
-# this values must exists in the json stdin
-# agent.set_env("MAIL_SERVER", data["mail_server"])
-# agent.set_env("LDAP_DOMAIN", data["ldap_domain"])
+# Write the environment variables to the agent
+app_config = {
+    'DATABASE_NAME': DATABASE_NAME,
+    'INIT_GROUP': INIT_GROUP,
+    'INIT_PASSWORD': INIT_PASSWORD,
+    'INIT_USER': INIT_USER
+}
+agent.write_envfile("app.env", app_config)
 
-# you can add default values for the following variables
-# agent.set_env("MAIL_DOMAIN",data.get("mail_domain",""))
-# agent.set_env("WOWORKERSCOUNT",data.get("workers_count",3))
-# agent.set_env("AUXILIARYACCOUNT",data.get("auxiliary_account",True))
-# agent.set_env("ACTIVESYNC",data.get("activesync",False))
-
-
-# Make sure everything is saved inside the environment file
-# just before starting systemd unit
 #agent.dump_env()

@@ -6,7 +6,7 @@
 [Unit]
 Description=Podman  zusam-app.service
 BindsTo=zusam.service
-After=zusam.service mariadb-app.service
+After=zusam.service
 
 [Service]
 Environment=PODMAN_SYSTEMD_UNIT=%n
@@ -21,16 +21,9 @@ ExecStartPre=-runagent discover-smarthost
 ExecStart=/usr/bin/podman run --conmon-pidfile %t/zusam-app.pid \
     --cidfile %t/zusam-app.ctr-id --cgroups=no-conmon \
     --pod-id-file %t/zusam.pod-id --replace -d --name  zusam-app \
-    --volume zusam-app:/var/www/html/:Z \
-    --volume ./config:/tmp:Z \
-    --env=MARIADB_* \
-    --env MARIADB_DB_TYPE=mysql \
-    --env MARIADB_DB_HOST=127.0.0.1 \
-    --env MARIADB_DB_PORT=3306 \
-    --env MARIADB_DB_USER=zusam \
-    --env MARIADB_DB_PASSWORD=zusam \
-    --env MARIADB_DB_NAME=zusam \
-    ${NGINX_IMAGE}
+    --volume zusam-app:zusam/data:Z \
+    --env-file=%S/state/app.env \
+    ${ZUSAM_IMAGE}
 ExecStop=/usr/bin/podman stop --ignore --cidfile %t/zusam-app.ctr-id -t 10
 ExecReload=/usr/bin/podman kill -s HUP zusam-app
 SyslogIdentifier=%u
