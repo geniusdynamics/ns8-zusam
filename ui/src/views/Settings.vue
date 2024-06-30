@@ -33,6 +33,37 @@
               ref="host"
             >
             </cv-text-input>
+            <cv-text-input
+              :label="$t('settings.zusam_init_user')"
+              placeholder="Init User"
+              v-model.trim="init_user"
+              class="mg-bottom"
+              :invalid-message="$t(error.init_user)"
+              :disabled="loading.getConfiguration || loading.configureModule"
+              ref="init_user"
+            >
+            </cv-text-input>
+            <cv-text-input
+              :label="$t('settings.zusam_init_group')"
+              placeholder="Init Group"
+              v-model.trim="init_group"
+              class="mg-bottom"
+              :invalid-message="$t(error.init_group)"
+              :disabled="loading.getConfiguration || loading.configureModule"
+              ref="init_group"
+            >
+            </cv-text-input>
+            <cv-text-input
+              :label="$t('settings.zusam_init_password')"
+              placeholder="zusam.example.org"
+              v-model="init_password"
+              class="mg-bottom"
+              :invalid-message="$t(error.init_password)"
+              :disabled="loading.getConfiguration || loading.configureModule"
+              ref="init_password"
+              type="password"
+            >
+            </cv-text-input>
             <cv-toggle
               value="letsEncrypt"
               :label="$t('settings.lets_encrypt')"
@@ -125,6 +156,9 @@ export default {
       host: "",
       isLetsEncryptEnabled: false,
       isHttpToHttpsEnabled: true,
+      init_user: "",
+      init_password: "",
+      init_group: "",
       loading: {
         getConfiguration: false,
         configureModule: false,
@@ -135,6 +169,9 @@ export default {
         host: "",
         lets_encrypt: "",
         http2https: "",
+        init_user: "",
+        init_password: "",
+        init_group: "",
       },
     };
   },
@@ -202,6 +239,9 @@ export default {
       this.host = config.host;
       this.isLetsEncryptEnabled = config.lets_encrypt;
       this.isHttpToHttpsEnabled = config.http2https;
+      this.init_user = config.init_user;
+      this.init_password = config.init_password;
+      this.init_group = config.init_group;
 
       this.loading.getConfiguration = false;
       this.focusElement("host");
@@ -271,6 +311,9 @@ export default {
             host: this.host,
             lets_encrypt: this.isLetsEncryptEnabled,
             http2https: this.isHttpToHttpsEnabled,
+            init_user: this.init_user,
+            init_password: this.init_password,
+            init_group: this.init_group,
           },
           extra: {
             title: this.$t("settings.instance_configuration", {

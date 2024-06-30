@@ -38,7 +38,10 @@
     "instance_configuration": "Configure zusam",
     "domain_already_used_in_traefik": "Domain already used in traefik",
     "host_pattern": "Must be a valid fully qualified domain name",
-    "host_format": "Must be a valid fully qualified domain name"
+    "host_format": "Must be a valid fully qualified domain name",
+    "zusam_init_user": "Initial user",
+    "zusam_init_password": "Initial password",
+    "zusam_init_group": "Initial group"
   },
   "about": {
     "title": "About"

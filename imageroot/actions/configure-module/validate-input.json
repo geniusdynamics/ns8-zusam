@@ -7,14 +7,20 @@
         {
             "host": "zusam.domain.org",
             "http2https": true,
-            "lets_encrypt": true
+            "lets_encrypt": true,
+            "init_user": "admin",
+            "init_password": "admin",
+            "init_group": "admin"
         }
     ],
     "type": "object",
     "required": [
         "host",
         "http2https",
-        "lets_encrypt"
+        "lets_encrypt",
+        "init_user",
+        "init_password",
+        "init_group"
     ],
     "properties": {
         "host": {
@@ -32,6 +38,21 @@
             "type": "boolean",
             "title": "HTTP to HTTPS redirection",
             "description": "Redirect all the HTTP requests to HTTPS"
+        },
+        "init_user": {
+            "type": "string",
+            "description": "Initial admin user",
+            "default": "admin"
+        },
+        "init_password": {
+            "type": "string",
+            "description": "Initial admin password",
+            "default": "admin"
+        },
+        "init_group": {
+            "type": "string",
+            "description": "Initial admin group",
+            "default": "admin"
         }
     }
 }
