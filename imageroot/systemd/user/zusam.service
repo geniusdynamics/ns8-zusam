@@ -10,8 +10,8 @@
 
 [Unit]
 Description=Podman zusam.service
-Requires=mariadb-app.service zusam-app.service
-Before=mariadb-app.service zusam-app.service
+Requires=zusam-app.service
+Before=zusam-app.service
 
 [Service]
 Environment=PODMAN_SYSTEMD_UNIT=%n
