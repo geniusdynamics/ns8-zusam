@@ -6,17 +6,13 @@
   "categories": [],
   "authors": [
     {
-      "name": "Kemboi Elvis",
-      "email": "kemboielvis@genius.ke"
-    },
-    {
-      "name": "Martin Bhuong",
-      "email": "martin@genius.ke"
+      "name": "Genius Dynamics",
+      "email": "support@genius.ke"
     }
   ],
   "docs": {
     "documentation_url": "https://github.com/zusam/zusam/tree/master/documentation",
-    "bug_url": "https://github.com/geniusdynamics/dev",
+    "bug_url": "https://github.com/geniusdynamics/ns8-zusam/issues",
     "code_url": "https://github.com/geniusdynamics/ns8-zusam"
   },
   "source": "ghcr.io/geniusdynamics/zusam"
