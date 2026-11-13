@@ -27,6 +27,8 @@ DATABASE_NAME = data.get('database_name', 'data.db')
 
 # Write the environment variables to the agent
 app_config = {
+    # the image leaves the <APP_ENV> placeholder, which Symfony rejects
+    'APP_ENV': 'prod',
     'DATABASE_NAME': DATABASE_NAME,
     'INIT_GROUP': INIT_GROUP,
     'INIT_PASSWORD': INIT_PASSWORD,
