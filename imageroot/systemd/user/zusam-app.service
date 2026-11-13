@@ -19,7 +19,7 @@ ExecStartPre=/bin/rm -f %t/zusam-app.pid %t/zusam-app.ctr-id
 ExecStart=/usr/bin/podman run --conmon-pidfile %t/zusam-app.pid \
     --cidfile %t/zusam-app.ctr-id --cgroups=no-conmon \
     --pod-id-file %t/zusam.pod-id --replace -d --name  zusam-app \
-    --volume zusam-app:zusam/data:Z \
+    --volume zusam-app:/zusam/data:Z \
     --env-file=%E/state/app.env \
     ${ZUSAM_IMAGE}
 ExecStop=/usr/bin/podman stop --ignore --cidfile %t/zusam-app.ctr-id -t 10
