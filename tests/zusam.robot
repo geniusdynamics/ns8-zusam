@@ -2,7 +2,7 @@
 Library    SSHLibrary
 
 *** Variables ***
-${HOST}    .example.org
+${HOST}    zusam.example.org
 ${ADMIN_USER}    admin
 ${ADMIN_PASSWORD}    Nethesis,1234
 ${module_id}    ${EMPTY}
@@ -41,7 +41,7 @@ Take screenshots
     Close Browser
 
 Check if zusam can be configured
-    ${rc} =    Execute Command    api-cli run module/${module_id}/configure-module --data '{"host":"${HOST}","http2https":true,"lets_encrypt":false}'
+    ${rc} =    Execute Command    api-cli run module/${module_id}/configure-module --data '{"host":"${HOST}","http2https":true,"lets_encrypt":false,"init_user":"admin","init_password":"admin","init_group":"admin"}'
     ...    return_rc=True  return_stdout=False
     Should Be Equal As Integers    ${rc}  0
 
